@@ -1,0 +1,165 @@
+<!--
+  魔导战姬 · 开场主页
+  本文件为“封面 / 作者页 / 目录入口”
+  不包含 <html><head><body>，用于 jQuery .load 注入
+-->
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/AdimralX/tavern_1910modao@main/主页样式.css"
+/>
+
+<div class="paper">
+  <div class="novel-frame">
+    <div class="novel-frame-inner">
+      <i class="corner tl"></i>
+      <i class="corner tr"></i>
+      <i class="corner bl"></i>
+      <i class="corner br"></i>
+
+      <!-- =========================
+           小说封面 / 报头
+           ========================= -->
+      <header class="frame-header">
+        <div class="masthead-topline">
+          A PRIVATE PRINT · FOR INTERNAL CIRCULATION ONLY
+        </div>
+
+        <div class="header-title">
+          魔导战姬与大明少年
+        </div>
+
+        <div class="masthead-subline">
+          <span>Vol. I</span>
+          <span>•</span>
+          <span>开场卷</span>
+          <span>•</span>
+          <span>Confidential Edition</span>
+        </div>
+
+        <div class="masthead-rule"></div>
+
+        <div class="author-info">
+          作者：emo的lsp · 本页为小说封面与元信息
+        </div>
+      </header>
+
+      <!-- =========================
+           副标题 / 世界观宣言
+           ========================= -->
+      <section class="content-area">
+        <section class="chapter">
+          <div class="chapter-title">
+            <div class="left">序言</div>
+            <div class="tag">PROLOGUE</div>
+          </div>
+
+          <p class="dropcap">
+            当魔力不再是神祇的恩赐，而成为军备与管制的对象，
+            当少女的身体被视为可计算、可替换、可牺牲的资源，
+            “战姬”这一称谓，便不再意味着荣耀。
+          </p>
+
+          <p class="muted" style="margin-top: 8px">
+            本书记录的，并非英雄的史诗，
+            而是被时代推上战场之人，在秩序、服从与自我之间的挣扎。
+          </p>
+        </section>
+
+        <!-- =========================
+             世界背景简介
+             ========================= -->
+        <section class="chapter">
+          <div class="chapter-title">
+            <div class="left">世界背景</div>
+            <div class="tag">SETTING</div>
+          </div>
+
+          <p class="dropcap">
+            魔导纪元第七十六年，诸国以“魔导适格率”为核心指标，
+            将适格者集中编入各级战术单位。
+            她们被编号、被记录、被调度，
+            在文件中以“资产”之名存在。
+          </p>
+
+          <p class="muted" style="margin-top: 8px">
+            而你，正站在这一体系的入口。
+          </p>
+        </section>
+
+        <!-- =========================
+             阅读与游玩说明（Meta）
+             ========================= -->
+        <section class="chapter">
+          <div class="chapter-title">
+            <div class="left">阅读说明</div>
+            <div class="tag">NOTICE</div>
+          </div>
+
+          <div class="notice-box">
+            <p>
+              本页为 <b>小说封面 / 作者说明页</b>，
+              不属于角色扮演中的角色对白。
+            </p>
+            <p style="margin-top: 6px">
+              故事内容将从下一页开始。
+              你可在后续页面选择开场方式、身份与立场。
+            </p>
+          </div>
+        </section>
+
+        <!-- =========================
+             开始按钮（由 JS 接管）
+             ========================= -->
+        <section class="chapter">
+          <div class="chapter-title">
+            <div class="left">开始阅读</div>
+            <div class="tag">BEGIN</div>
+          </div>
+
+          <div class="opening-grid">
+            <div
+              class="opening-card"
+              data-action="switch-opening"
+              data-swipe="1"
+            >
+              <div class="opening-badge">右滑开场</div>
+              <div class="opening-title">魔导战姬与大明少年</div>
+              <div class="opening-desc">
+                你收到来自魔导管理局的正式通知，
+                被要求于七日内前往指定设施报到。
+                拒绝，将被视为对国家秩序的挑战。
+              </div>
+            </div>
+
+            <div
+              class="opening-card"
+              data-action="switch-opening"
+              data-swipe="2"
+            >
+              <div class="opening-badge">进阶开场</div>
+              <div class="opening-title">已编入名册者</div>
+              <div class="opening-desc">
+                你并非第一次踏入这片设施。
+                魔导战姬的制服、编号与规则，
+                对你而言早已熟悉。
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================
+             封底式结束语
+             ========================= -->
+        <div class="footer-note">
+          —— The Story Begins Here ——
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- 交互脚本（外部加载，保证 .load 场景可执行） -->
+<script
+  src="https://cdn.jsdelivr.net/gh/AdimralX/tavern_1910modao@main/主页交互.js"
+></script>

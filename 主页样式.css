@@ -1,0 +1,350 @@
+/* =========================================================
+   主页样式.css  —— 19世纪小说封面/印刷品风格（SillyTavern .load 友好）
+   目标：纸张质感 + 书封边框 + 报头/封面排版 + 章节块
+   说明：不依赖任何外部预处理器；可直接 CDN 引用
+   ========================================================= */
+
+:root {
+  --ink: #241b12;
+  --ink-soft: rgba(36, 27, 18, 0.72);
+  --paper: #f3e7cf;
+  --paper-2: #ead9b7;
+  --paper-3: #d9c59e;
+  --rule: rgba(36, 27, 18, 0.25);
+  --rule-strong: rgba(36, 27, 18, 0.55);
+  --accent: #6b2f1a; /* 旧印章/标题棕红 */
+  --shadow: rgba(0, 0, 0, 0.22);
+}
+
+/* ========= 基础重置 ========= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 注意：酒馆里 body 可能已有样式；这里尽量不强行覆盖背景 */
+body {
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========= 纸张底板 ========= */
+.paper {
+  position: relative;
+  border: 1px solid var(--rule-strong);
+  box-shadow: 0 12px 35px var(--shadow);
+  overflow: hidden;
+
+  background:
+    radial-gradient(1200px 800px at 20% 10%, rgba(255, 255, 255, 0.65), transparent 55%),
+    radial-gradient(900px 650px at 80% 30%, rgba(255, 255, 255, 0.35), transparent 60%),
+    linear-gradient(0deg, var(--paper), var(--paper-2));
+}
+
+/* 噪点/纸纤维纹理 */
+.paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(36, 27, 18, 0.02) 0px,
+      rgba(36, 27, 18, 0.02) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(36, 27, 18, 0.015) 0px,
+      rgba(36, 27, 18, 0.015) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* 泛黄/污渍 */
+.paper::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background:
+    radial-gradient(closest-side at 10% 10%, rgba(107, 47, 26, 0.12), transparent 55%),
+    radial-gradient(closest-side at 90% 20%, rgba(107, 47, 26, 0.1), transparent 60%),
+    radial-gradient(closest-side at 30% 95%, rgba(107, 47, 26, 0.14), transparent 55%);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* ========= 外框（旧书封皮） ========= */
+.novel-frame {
+  position: relative;
+  padding: 10px;
+}
+
+.novel-frame-inner {
+  position: relative;
+  border: 2px solid var(--rule-strong);
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* 角花（四角线框） */
+.corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--rule-strong);
+  opacity: 0.9;
+  pointer-events: none;
+}
+.corner.tl {
+  top: 6px;
+  left: 6px;
+  border-right: none;
+  border-bottom: none;
+}
+.corner.tr {
+  top: 6px;
+  right: 6px;
+  border-left: none;
+  border-bottom: none;
+}
+.corner.bl {
+  bottom: 6px;
+  left: 6px;
+  border-right: none;
+  border-top: none;
+}
+.corner.br {
+  bottom: 6px;
+  right: 6px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ========= 封面抬头 ========= */
+.frame-header {
+  padding: 12px 10px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.masthead-topline {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  letter-spacing: 0.2em;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.header-title {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+  text-transform: uppercase;
+  margin: 6px 0 4px;
+}
+
+.masthead-subline {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.masthead-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule-strong), transparent);
+  margin: 10px 0 2px;
+}
+
+.author-info {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* ========= 内容区 ========= */
+.content-area {
+  padding: 12px 6px 6px;
+}
+
+/* ========= 章节块（像印刷专栏） ========= */
+.chapter {
+  border: 1px solid var(--rule);
+  background: rgba(255, 255, 255, 0.18);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.chapter:hover {
+  border-color: var(--rule-strong);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.chapter-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chapter-title .left {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.chapter-title .tag {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 首字下沉：让段落像小说 */
+.dropcap {
+  color: var(--ink);
+  font-size: 13.5px;
+}
+
+.dropcap::first-letter {
+  float: left;
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 44px;
+  line-height: 0.9;
+  padding-right: 8px;
+  padding-top: 2px;
+  color: var(--accent);
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+
+/* ========= 公告框 ========= */
+.notice-box {
+  padding: 10px 12px;
+  border: 1px solid var(--rule-strong);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.notice-box p {
+  font-size: 12.8px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ========= 开场卡片（目录条目风） ========= */
+.opening-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.opening-card {
+  border: 1px solid var(--rule-strong);
+  background: rgba(255, 255, 255, 0.14);
+  padding: 12px 12px;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  position: relative;
+}
+
+.opening-card:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.26);
+  border-color: var(--accent);
+}
+
+.opening-card:active {
+  transform: translateY(0px);
+}
+
+.opening-badge {
+  display: inline-block;
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 2px 8px;
+  margin-bottom: 8px;
+}
+
+.opening-title {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.opening-desc {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ========= 交互状态（由 JS 加 class） ========= */
+.is-disabled {
+  opacity: 0.65;
+  pointer-events: none;
+  filter: saturate(0.8);
+}
+
+.is-selected {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px rgba(107, 47, 26, 0.12);
+}
+
+/* ========= 封底结语 ========= */
+.footer-note {
+  text-align: center;
+  margin-top: 12px;
+  padding: 14px 10px;
+  border: 1px solid var(--rule-strong);
+  background: rgba(255, 255, 255, 0.2);
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.footer-note::before,
+.footer-note::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule-strong), transparent);
+  margin: 6px auto;
+  width: 70%;
+}
+
+/* ========= 小屏适配 ========= */
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 22px;
+  }
+  .content-area {
+    padding: 10px 4px 4px;
+  }
+}
